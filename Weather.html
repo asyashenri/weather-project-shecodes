@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/weather.css" />
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <form id="cityForm">
+            <input type="text" placeholder="Enter a city" id="textInput" />
+            <button type="submit" id="searchbutton">Search</button>
+            <button id="currentlocation">Current location</button>
+          </form>
+          <div class="row">
+            <div class="col-6">
+              <h1 id="city"></h1>
+              <h2>
+                <br />
+              </h2>
+              <h3>
+                <div class="description">
+                  <div id="weatherId"></div>
+                  <div id="wind"></div>
+                  <div id="humidity"></div>
+                </div>
+              </h3>
+            </div>
+            <div class="col-6">
+              <div class="clearfix">
+                <img
+                  src="weatherimg/animated/cloudy-day-1.svg"
+                  width="140"
+                  class="float-start"
+                />
+                <div class="float-start">
+                  <span id="temper" class="temper"></span
+                  ><span class="hight"> °C </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row tmp">
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Wed</h5>
+                  <img src="weatherimg/static/day.svg" />
+                  <p class="card-text"><strong>27°C </strong> 15°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Thu</h5>
+                  <img src="weatherimg/static/rainy-1.svg" />
+
+                  <p class="card-text"><strong>21°C </strong>14°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Fri</h5>
+                  <img src="weatherimg/static/day.svg" />
+
+                  <p class="card-text"><strong>28°C </strong>20°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Sat</h5>
+                  <img src="weatherimg/static/cloudy.svg" />
+
+                  <p class="card-text"><strong>23°C </strong>16°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Sun</h5>
+                  <img src="weatherimg/static/thunder.svg" />
+
+                  <p class="card-text"><strong>24°C </strong>15°C</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Mon</h5>
+                  <img src="weatherimg/static/rainy-5.svg" />
+
+                  <p class="card-text"><strong>21°C </strong>15°C</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="weather.js"></script>
+  </body>
+</html>
