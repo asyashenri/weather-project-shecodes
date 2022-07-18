@@ -20,34 +20,40 @@
       <div class="card">
         <div class="card-body">
           <form id="cityForm">
-            <input type="text" placeholder="Enter a city" id="textInput" />
+            <input
+              type="text"
+              placeholder="Enter a city"
+              id="textInput"
+              autocomplete="off"
+            />
             <button type="submit" id="searchbutton">Search</button>
             <button id="currentlocation">Current location</button>
           </form>
           <div class="row">
             <div class="col-6">
               <h1 id="city"></h1>
-              <h2>
+              <h2 id="date">
                 <br />
               </h2>
               <h3>
                 <div class="description">
-                  <div id="weatherId"></div>
+                  <div id="weatherId" class="weatherId"></div>
                   <div id="wind"></div>
                   <div id="humidity"></div>
+                  <div id="feelsLike"></div>
                 </div>
               </h3>
             </div>
             <div class="col-6">
               <div class="clearfix">
-                <img
-                  src="weatherimg/animated/cloudy-day-1.svg"
-                  width="140"
-                  class="float-start"
-                />
+                <img src="" alt="" width="140" class="float-start" id="icon" />
                 <div class="float-start">
                   <span id="temper" class="temper"></span
-                  ><span class="hight"> °C </span>
+                  ><span class="hight"
+                    ><a href="#" id="celcius">°C</a>|<a href="#" id="fahrenheit"
+                      >°F</a
+                    >
+                  </span>
                 </div>
               </div>
             </div>
@@ -119,6 +125,7 @@
       <p class="code">
         <a
           href="https://github.com/asyashenri/weather-project-shecodes/tree/main"
+          target="_blank"
           >Open-source code</a
         >
         by Asya Shenri

@@ -1,6 +1,6 @@
 function todayIS() {
   let now = new Date();
-  let h2 = document.querySelector("h2");
+
   let date = now.getDate();
 
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -21,14 +21,16 @@ function todayIS() {
   ];
   let month = months[now.getMonth()];
   let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   let minutes = now.getMinutes();
-  h2.innerHTML = `${day}, ${month} ${date} </br> ${hours}:${minutes} `;
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day}, ${month} ${date} </br> ${hours}:${minutes} `;
 }
-todayIS();
 
-// Week 5
-
-//
 function showTemperature(response) {
   console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
@@ -37,11 +39,27 @@ function showTemperature(response) {
   let weatherCity = document.querySelector("#city");
   weatherCity.innerHTML = response.data.name;
   let weatherId = document.querySelector("#weatherId");
-  weatherId.innerHTML = response.data.weather[0].main;
+  weatherId.innerHTML = response.data.weather[0].description;
   let wind = document.querySelector("#wind");
   wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  let feelsLike = document.querySelector("#feelsLike");
+  feelsLike.innerHTML = `Feels like: ${Math.round(
+    response.data.main.feels_like
+  )}°C`;
+  let dateElement = document.querySelector("#date");
+  dateElement.innerHTML = todayIS(response.data.dt * 1000);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute(
+    "alt",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].description}@2x.png`
+  );
+  celciusTemp = response.data.main.temp;
 }
 function searchCity(city) {
   let apiKey = "3b4c629abd4f59a4493ceb24e7a200fb";
@@ -59,7 +77,6 @@ function handleSubmit(event) {
 let searchButton = document.querySelector("#cityForm");
 searchButton.addEventListener("submit", handleSubmit);
 searchCity("London");
-//
 
 function showPosition(position) {
   let apiKey = "3b4c629abd4f59a4493ceb24e7a200fb";
@@ -73,5 +90,24 @@ function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemp = (celciusTemp * 9) / 5 + 32;
+  let tempElement = document.querySelector("#temper");
+  tempElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#temper");
+  tempElement.innerHTML = Math.round(celciusTemp);
+}
+let celciusTemp = null;
 let currentLocationButton = document.querySelector("#currentlocation");
 currentLocationButton.addEventListener("click", getCurrentPosition);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celciusLink = document.querySelector("#celcius");
+celciusLink.addEventListener("click", showCelsiusTemperature);
