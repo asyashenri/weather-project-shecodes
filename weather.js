@@ -30,7 +30,27 @@ function todayIS() {
   }
   return `${day}, ${month} ${date} </br> ${hours}:${minutes} `;
 }
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${day}</h5>
+                  <img src="weatherimg/static/day.svg" />
+                  <p class="card-text"><span class="forecast-temp-max"><strong>27°</strong></span><span class="forecast-temp-min">°</span></p>
+                </div>
+              </div>`;
+  });
 
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 function showTemperature(response) {
   console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
@@ -60,6 +80,7 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].description}@2x.png`
   );
   celciusTemp = response.data.main.temp;
+  displayForecast();
 }
 function searchCity(city) {
   let apiKey = "3b4c629abd4f59a4493ceb24e7a200fb";

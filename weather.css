@@ -102,3 +102,6 @@ a {
 .weatherId::first-letter {
   text-transform: capitalize;
 }
+.card-body {
+  padding: 20px 10px;
+}
